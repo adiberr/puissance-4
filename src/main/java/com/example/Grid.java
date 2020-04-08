@@ -9,4 +9,8 @@ public class Grid {
     public boolean isEmpty() {
         return true;
     }
+
+    public void insertTockenInColumn(char x, int i) throws  Exception {
+        throw new Exception("EXCEPTION");
+    }
 }
