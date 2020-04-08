@@ -10,7 +10,10 @@ public class Grid {
         return true;
     }
 
-    public void insertTockenInColumn(char x, int i) throws  Exception {
-        throw new Exception("EXCEPTION");
+    public int insertTokenInColumn(char token, int column) throws  Exception {
+        if(column > 6){
+            throw new Exception("EXCEPTION");
+        }
+        return  0;
     }
 }
