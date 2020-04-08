@@ -21,6 +21,34 @@ public class Grid {
 
     public boolean isAlignedTokenOf(String token, int numerOfTokens) {
 
+        if (checkForColumns(token, numerOfTokens)) return true;
+        if (checkForLines(token, numerOfTokens)) return true;
+        return false;
+    }
+
+    private boolean checkForLines(String token, int numerOfTokens) {
+        for (int line = 0; line < LINES; line++) {
+            if (checkAlignedLines(token, numerOfTokens, line)) return true;
+        }
+        return false;
+    }
+
+    private boolean checkAlignedLines(String token, int numerOfTokens, int line) {
+        int count = 0;
+        for (int column = 0; column < COLUMNS; column++) {
+            if (token.equals(this.surface[column][line])) {
+                count++;
+            } else {
+                count = 0;
+            }
+            if (count >= numerOfTokens) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForColumns(String token, int numerOfTokens) {
         for(int i=0; i<COLUMNS;i++){
             String[] column = this.surface[i];
             if (checkAlignedTokenInColumn(token, numerOfTokens, column)) return true;

@@ -12,11 +12,12 @@ public class GridTest {
         assertEquals(42, grid.size());
         assertTrue(grid.isEmpty());
     }
+
     @Test
-    public  void insertInColumnWhenColumnNumberIsGreaterThan7ShouldThrowException(){
+    public void insertInColumnWhenColumnNumberIsGreaterThan7ShouldThrowException() {
         Grid grid = new Grid();
-          Assertions.assertThrows(Exception.class, () -> {
-            grid.insertTokenInColumn("X",7);
+        Assertions.assertThrows(Exception.class, () -> {
+            grid.insertTokenInColumn("X", 7);
         });
     }
 
@@ -24,7 +25,7 @@ public class GridTest {
     public void insertInToEmptyColumnShouldPutTokenInTheFisrtLine() throws Exception {
         Grid grid = new Grid();
         int line = grid.insertTokenInColumn("X", 0);
-        assertEquals(0,line);
+        assertEquals(0, line);
     }
 
     @Test
@@ -34,7 +35,7 @@ public class GridTest {
         grid.insertTokenInColumn("X", 0);
         grid.insertTokenInColumn("X", 0);
         int line = grid.insertTokenInColumn("X", 0);
-        assertEquals(3,line);
+        assertEquals(3, line);
     }
 
     @Test
@@ -47,7 +48,7 @@ public class GridTest {
         grid.insertTokenInColumn("X", 0);
         grid.insertTokenInColumn("X", 0);
         Assertions.assertThrows(Exception.class, () -> {
-            grid.insertTokenInColumn("X",0);
+            grid.insertTokenInColumn("X", 0);
         });
 
     }
@@ -59,6 +60,19 @@ public class GridTest {
         grid.insertTokenInColumn("X", 0);
         grid.insertTokenInColumn("X", 0);
         grid.insertTokenInColumn("X", 0);
+        assertTrue(grid.isAlignedTokenOf("X", 2));
+        assertTrue(grid.isAlignedTokenOf("X", 3));
+        assertTrue(grid.isAlignedTokenOf("X", 4));
+        assertFalse(grid.isAlignedTokenOf("X", 5));
+    }
+
+    @Test
+    public void checkAlignedTokenOfTypeShouldReturnTrueWhenTokensAreAlignedInTheSameLine() throws Exception {
+        Grid grid = new Grid();
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 1);
+        grid.insertTokenInColumn("X", 2);
+        grid.insertTokenInColumn("X", 3);
         assertTrue(grid.isAlignedTokenOf("X", 2));
         assertTrue(grid.isAlignedTokenOf("X", 3));
         assertTrue(grid.isAlignedTokenOf("X", 4));
