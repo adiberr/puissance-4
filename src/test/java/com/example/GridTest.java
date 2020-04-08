@@ -16,14 +16,24 @@ public class GridTest {
     public  void insertInColumnWhenColumnNumberIsGreaterThan7ShouldThrowException(){
         Grid grid = new Grid();
           Assertions.assertThrows(Exception.class, () -> {
-            grid.insertTokenInColumn('X',7);
+            grid.insertTokenInColumn("X",7);
         });
     }
 
     @Test
     public void insertInToEmptyColumnShouldPutTokenInTheFisrtLine() throws Exception {
         Grid grid = new Grid();
-        int line = grid.insertTokenInColumn('X', 0);
+        int line = grid.insertTokenInColumn("X", 0);
         assertEquals(0,line);
+    }
+
+    @Test
+    public void insertInToColumnContainingThreeTokensShouldPutTokenInTheFourthLine() throws Exception {
+        Grid grid = new Grid();
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        int line = grid.insertTokenInColumn("X", 0);
+        assertEquals(3,line);
     }
 }
