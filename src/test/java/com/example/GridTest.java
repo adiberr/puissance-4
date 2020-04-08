@@ -36,4 +36,32 @@ public class GridTest {
         int line = grid.insertTokenInColumn("X", 0);
         assertEquals(3,line);
     }
+
+    @Test
+    public void insterIntoFullColumnShouldThrowsException() throws Exception {
+        Grid grid = new Grid();
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        Assertions.assertThrows(Exception.class, () -> {
+            grid.insertTokenInColumn("X",0);
+        });
+
+    }
+
+    @Test
+    public void checkAlignedTokenOfTypeShouldReturnTrueWhenTokenAreAlignedInTheSameColumn() throws Exception {
+        Grid grid = new Grid();
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        grid.insertTokenInColumn("X", 0);
+        assertTrue(grid.isAlignedTokenOf("X", 2));
+        assertTrue(grid.isAlignedTokenOf("X", 3));
+        assertTrue(grid.isAlignedTokenOf("X", 4));
+        assertFalse(grid.isAlignedTokenOf("X", 5));
+    }
 }

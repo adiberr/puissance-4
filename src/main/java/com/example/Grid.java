@@ -19,6 +19,29 @@ public class Grid {
         return true;
     }
 
+    public boolean isAlignedTokenOf(String token, int numerOfTokens) {
+
+        for(int i=0; i<COLUMNS;i++){
+            String[] column = this.surface[i];
+            if (checkAlignedTokenInColumn(token, numerOfTokens, column)) return true;
+        }
+        return false;
+    }
+
+    private boolean checkAlignedTokenInColumn(String token, int numerOfTokens, String[] column) {
+        int count = 0;
+        for(int j=0; j<LINES;j++){
+            if(token.equals(column[j])){
+                count++;
+            }else {
+                count = 0;
+            }
+            if (count>=numerOfTokens)
+                return true;
+        }
+        return false;
+    }
+
     public Integer insertTokenInColumn(String token, Integer column) throws  Exception {
         validateColumnNumber(column);
         return insertIntoNextAvailableLine(token, this.surface[column]);
@@ -30,13 +53,15 @@ public class Grid {
         }
     }
 
-    private Integer insertIntoNextAvailableLine(String token, String[] column) {
+    private Integer insertIntoNextAvailableLine(String token, String[] column) throws Exception {
         for(int i = 0; i < column.length; i++){
             if(column[i] == null){
                 column[i] = token;
                 return i;
             }
         }
-        return null;
+        throw new Exception("colonne remplie");
     }
+
+
 }
